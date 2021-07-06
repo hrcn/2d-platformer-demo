@@ -165,6 +165,11 @@ public class PlayerController : MonoBehaviour
         lastImageXpos = transform.position.x;
     }
 
+    public int GetFacingDirection()
+    {
+        return facingDirection;
+    }
+
     private void CheckDash()
     {
         if (isDashing)
