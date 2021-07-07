@@ -5,7 +5,14 @@ using UnityEngine;
 public class CombatDummyController : MonoBehaviour
 {
     [SerializeField]
-    private float maxHealth, knockbackSpeedX, knockbackSpeedY, knockbackDuration, knockbackDeathSpeedX, knockbackDeathSpeedY, deathTorque;
+    private float
+        maxHealth,
+        knockbackSpeedX,
+        knockbackSpeedY,
+        knockbackDuration,
+        knockbackDeathSpeedX,
+        knockbackDeathSpeedY,
+        deathTorque; // torque makes broken top spin
     [SerializeField]
     private bool  applyKnockback;
 
@@ -47,9 +54,9 @@ public class CombatDummyController : MonoBehaviour
         CheckKnockback();
     }
 
-    private void Damage(float amount)
+    private void Damage(float[] attackDetails)
     {
-        currentHealth -= amount; // dummy takes damage
+        currentHealth -= attackDetails[0]; // dummy takes damage
         playerFacingDirection = pc.GetFacingDirection();
 
         if (playerFacingDirection == 1)
@@ -64,15 +71,15 @@ public class CombatDummyController : MonoBehaviour
         aliveAnim.SetBool("playerOnLeft", playerOnLeft);
         aliveAnim.SetTrigger("damage");
 
+        // knock back
         if (applyKnockback && currentHealth > 0.0f)
         {
-            // knockback
             KonckBack();
         }
 
+        // die
         if (currentHealth < 0.0f)
         {
-            // die
             Die();
         }
     }
