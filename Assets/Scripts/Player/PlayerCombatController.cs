@@ -72,7 +72,7 @@ public class PlayerCombatController : MonoBehaviour
     }
 
     // detect range and deal damage
-    private void CheckAttack1HitBox()
+    private void CheckAttackHitBox()
     {
         // return all the objects detected in a circle
         Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(attack1HitBoxPos.position, attack1Radius, whatIsDamageable);

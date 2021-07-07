@@ -28,6 +28,7 @@ public class BasicEnemyController : MonoBehaviour
     private Vector2 knockbackSpeed;
     [SerializeField]
     private GameObject
+        hitParticle,
         deathChunkParticle,
         deathBloodParticle;
 
@@ -148,6 +149,8 @@ public class BasicEnemyController : MonoBehaviour
     private void Damage(float[] attackDetails) // [health, x position]
     {
         currentHealth -= attackDetails[0];
+
+        Instantiate(hitParticle, alive.transform.position, Quaternion.Euler(0.0f, 0.0f, Random.Range(0.0f, 360.0f)));
         
         if (attackDetails[1] > alive.transform.position.x) // player facing enemy
         {

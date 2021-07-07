@@ -14,6 +14,8 @@ public class CombatDummyController : MonoBehaviour
         knockbackDeathSpeedY,
         deathTorque; // torque makes broken top spin
     [SerializeField]
+    private GameObject hitParticle;
+    [SerializeField]
     private bool  applyKnockback;
 
     private float currentHealth;
@@ -58,6 +60,8 @@ public class CombatDummyController : MonoBehaviour
     {
         currentHealth -= attackDetails[0]; // dummy takes damage
         playerFacingDirection = pc.GetFacingDirection();
+
+        Instantiate(hitParticle, aliveGO.transform.position, Quaternion.Euler(0.0f, 0.0f, Random.Range(0.0f, 360.0f)));
 
         if (playerFacingDirection == 1)
         {
